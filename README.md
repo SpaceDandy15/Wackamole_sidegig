@@ -1,15 +1,12 @@
 # Whack-a-Mole Game
 
 ![License](https://img.shields.io/badge/license-MIT-green)
-![GitHub repo size](https://img.shields.io/github/repo-size/your-username/whack-a-mole)
 
 ## Overview
 This project implements a simple Whack-a-Mole game using HTML, CSS, and JavaScript. The player clicks on moles that randomly appear on the game board to score points. It includes dynamic gameplay with a timer, difficulty levels, and score tracking.
 
 ## Features
-- **Dynamic Difficulty Levels**: Choose between Easy, Medium, and Hard to challenge yourself as you progress.
 - **Real-time Score Updates**: Track your performance with an increasing score and high score tracking.
-- **Sound Effects**: Enjoy immersive audio feedback when hitting the mole.
 - **Random Mole Positioning**: Moles appear randomly on the game board, adding variety to each round.
 
 ## How to Play
@@ -27,6 +24,7 @@ This project implements a simple Whack-a-Mole game using HTML, CSS, and JavaScri
 - `style.css` – Provides the styles for the game interface.
 - `game.js` – Contains the game logic and interactivity.
 - `README.md` – This file.
+- 'CREDITS.txt'  – This is tribute for images used.
 
 ## How to Run
 1. Clone or download the project files.

@@ -2,10 +2,10 @@ Credits:
 
 1. Image by Dimonija, licensed under GPL 2.0.
    - "Mole with Blade" image
-   - Available at [insert source URL here]
+   - Available at [https://opengameart.org/content/a-mole]
 
 2. Texture by Stereoscopic, licensed under CC0.
    - "Simple Grass Texture" image
-   - Available at [insert source URL here]
+   - Available at [https://opengameart.org/content/grass-1]
 
 Thank you to Dimonija and Stereoscopic for sharing these assets!
