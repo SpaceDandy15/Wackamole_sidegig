@@ -3,35 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whack-A-Mole Game</title>
-    <!-- Link to the CSS stylesheet for game styling -->
+    <title>Whack-a-Mole</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Whack-A-Mole Game</h1>
-
-    <!-- Scoreboard to display the player's score -->
-    <div id="score-board">
-        <p>Score: <span id="score">0</span></p>
+    <!-- Game board where the mole will appear -->
+    <div class="game-board">
+        <div id="mole"></div> <!-- Mole element that will be shown and hidden -->
     </div>
+    
+    <!-- Display score and timer -->
+    <div id="score">Score: 0</div>
+    <div id="timer">Time Remaining: 30</div> <!-- Timer to show countdown -->
 
-    <!-- Game board with holes where moles appear -->
-    <div id="game-board">
-        <div class="grid">
-            <!-- 9 grid squares for moles -->
-            <div class="hole" id="hole-0"></div>
-            <div class="hole" id="hole-1"></div>
-            <div class="hole" id="hole-2"></div>
-            <div class="hole" id="hole-3"></div>
-            <div class="hole" id="hole-4"></div>
-            <div class="hole" id="hole-5"></div>
-            <div class="hole" id="hole-6"></div>
-            <div class="hole" id="hole-7"></div>
-            <div class="hole" id="hole-8"></div>
-        </div>
-    </div>
-
-    <!-- JavaScript for game logic -->
-    <script src="script.js"></script>
+    <script src="script.js"></script> <!-- Link to JavaScript file -->
 </body>
 </html>
