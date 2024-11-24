@@ -1,0 +1,66 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Header styling */
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Scoreboard container */
+#score-board {
+    margin-bottom: 20px;
+}
+
+/* Game board container */
+#game-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Grid layout for 9 holes */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+}
+
+/* Hole styling where moles appear */
+.hole {
+    width: 100px;
+    height: 100px;
+    background-color: #8b4513;  /* Brown color */
+    position: relative;
+    border-radius: 50%;
+    border: 5px solid #fff;
+}
+
+/* Mole styling inside holes */
+.mole {
+    background-color: #000; /* Black mole */
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none; /* Mole hidden by default */
+}
+
+/* Styling for score text */
+h1, #score-board {
+    font-size: 24px;
+}
+
+/* Styling for the score number */
+#score {
+    font-weight: bold;
+}
