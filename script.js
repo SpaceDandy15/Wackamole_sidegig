@@ -1,8 +1,9 @@
-// Select the mole element, score element, timer element, and high score display
+// Select the mole element, score element, timer element, high score display, and start button
 const mole = document.getElementById('mole');
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
 const highScoreDisplay = document.getElementById('highScore');
+const startButton = document.getElementById('startButton'); // Select the start button
 
 // Initialize score, high score, and game duration
 let score = 0; 
@@ -87,5 +88,5 @@ mole.addEventListener('click', () => {
     setTimeout(showMole, 500); // Delay before showing a new mole
 });
 
-// Start the game initially
-startGame();
+// Start the game when the Start Game button is clicked
+startButton.addEventListener('click', startGame);
