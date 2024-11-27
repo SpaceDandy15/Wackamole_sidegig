@@ -6,9 +6,9 @@ const highScoreDisplay = document.getElementById('highScore');
 const startButton = document.getElementById('startButton'); // Select the start button
 
 // Initialize score, high score, and game duration
-let score = 0; 
-let gameDuration = 30; 
-let highScore = localStorage.getItem('highScore') || 0; 
+let score = 0;
+let gameDuration = 30;
+let highScore = localStorage.getItem('highScore') || 0;
 
 // Update the high score display with the saved value
 highScoreDisplay.textContent = highScore;
@@ -50,7 +50,7 @@ function startGame() {
     timerDisplay.textContent = `Time Remaining: ${gameDuration}`;
     
     // Start mole interval
-    moleInterval = setInterval(showMole, 1000);
+    moleInterval = setInterval(showMole, 1000); // Mole shows every 1 second
 
     // Start game timer
     gameTimer = setInterval(() => {
@@ -61,6 +61,9 @@ function startGame() {
             endGame(); // End the game when time is up
         }
     }, 1000);
+    
+    // Hide the start button during the game
+    startButton.style.display = 'none';
 }
 
 // Function to end the game
@@ -78,6 +81,9 @@ function endGame() {
     }
 
     alert(`Game Over! Final Score: ${score}`); // Show final score
+
+    // Show the start button again after the game ends
+    startButton.style.display = 'block';
 }
 
 // Function to handle clicking the mole
