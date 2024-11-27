@@ -5,64 +5,87 @@ const timerDisplay = document.getElementById('timer');
 const highScoreDisplay = document.getElementById('highScore');
 
 // Initialize score, high score, and game duration
-let score = 0; // Initial score is 0
-let gameDuration = 30; // Set initial game duration to 30 seconds
-let highScore = localStorage.getItem('highScore') || 0; // Retrieve high score from localStorage or initialize to 0
+let score = 0; 
+let gameDuration = 30; 
+let highScore = localStorage.getItem('highScore') || 0; 
 
 // Update the high score display with the saved value
 highScoreDisplay.textContent = highScore;
 
+// Variables to manage intervals
+let moleInterval;
+let gameTimer;
+
 // Function to randomly position the mole on the game board
 function randomPosition() {
-    const board = document.querySelector('.game-board');  // Select the game board
-    const maxX = board.offsetWidth - mole.offsetWidth;  // Maximum horizontal position
-    const maxY = board.offsetHeight - mole.offsetHeight;  // Maximum vertical position
+    const board = document.querySelector('.game-board');
+    const maxX = board.offsetWidth - mole.offsetWidth;
+    const maxY = board.offsetHeight - mole.offsetHeight;
 
-    // Randomly generate the mole's new position
     const randomX = Math.floor(Math.random() * maxX);
     const randomY = Math.floor(Math.random() * maxY);
 
-    mole.style.left = `${randomX}px`;  // Set the mole's new X position
-    mole.style.top = `${randomY}px`;  // Set the mole's new Y position
+    mole.style.left = `${randomX}px`;
+    mole.style.top = `${randomY}px`;
 }
 
 // Function to show the mole and position it randomly
 function showMole() {
-    mole.classList.add('show');  // Add the 'show' class to display the mole
-    randomPosition();  // Position the mole randomly on the game board
+    mole.classList.add('show');
+    randomPosition();
 }
 
 // Function to hide the mole
 function hideMole() {
-    mole.classList.remove('show');  // Remove the 'show' class to hide the mole
+    mole.classList.remove('show');
 }
 
-// Function to handle clicking the mole (Whack!)
+// Function to start the game
+function startGame() {
+    // Reset score and timer
+    score = 0;
+    gameDuration = 30;
+    scoreDisplay.textContent = `Score: ${score}`;
+    timerDisplay.textContent = `Time Remaining: ${gameDuration}`;
+    
+    // Start mole interval
+    moleInterval = setInterval(showMole, 1000);
+
+    // Start game timer
+    gameTimer = setInterval(() => {
+        gameDuration--;
+        timerDisplay.textContent = `Time Remaining: ${gameDuration}`;
+
+        if (gameDuration <= 0) {
+            endGame(); // End the game when time is up
+        }
+    }, 1000);
+}
+
+// Function to end the game
+function endGame() {
+    clearInterval(gameTimer); // Stop the game timer
+    clearInterval(moleInterval); // Stop the mole appearance
+
+    hideMole(); // Ensure the mole is hidden
+
+    // Check if the current score is a new high score
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('highScore', highScore); // Save new high score
+        highScoreDisplay.textContent = highScore; // Update high score display
+    }
+
+    alert(`Game Over! Final Score: ${score}`); // Show final score
+}
+
+// Function to handle clicking the mole
 mole.addEventListener('click', () => {
-    score += 1;  // Increase score by 1 when the mole is clicked
-    scoreDisplay.textContent = `Score: ${score}`;  // Update the score display
-    hideMole();  // Hide the mole after it is clicked
-    setTimeout(showMole, 500);  // Show a new mole after a short delay (500ms)
+    score++;
+    scoreDisplay.textContent = `Score: ${score}`;
+    hideMole(); // Hide the mole after it's clicked
+    setTimeout(showMole, 500); // Delay before showing a new mole
 });
 
-// Start the game by showing a new mole every 1 second
-setInterval(showMole, 1000);  // Mole appears every second
-
-// Timer countdown function
-let gameTimer = setInterval(function() {
-    gameDuration--;  // Decrease time by 1 every second
-    timerDisplay.textContent = `Time Remaining: ${gameDuration}`;  // Update timer display
-
-    // When the time is up, stop the game and show the final score
-    if (gameDuration <= 0) {
-        clearInterval(gameTimer);  // Stop the timer
-        alert('Game Over! Final Score: ' + score);  // Show game over alert with final score
-
-        // Update high score if the current score is higher
-        if (score > highScore) {
-            highScore = score;  // Update high score
-            localStorage.setItem('highScore', highScore);  // Save high score in localStorage
-            highScoreDisplay.textContent = highScore;  // Update high score display
-        }
-    }
-}, 1000);  // Decrease the time every second
+// Start the game initially
+startGame();
