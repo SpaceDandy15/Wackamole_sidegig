@@ -3,7 +3,9 @@ const mole = document.getElementById('mole');
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
 const highScoreDisplay = document.getElementById('highScore');
-const startButton = document.getElementById('startButton'); // Select the start button
+const startButton = document.getElementById('startButton'); // Start button
+const resetHighScoreButton = document.getElementById('resetHighScore'); // Reset high score button
+const backgroundMusic = document.getElementById('backgroundMusic'); // Background music
 
 // Initialize score, high score, and game duration
 let score = 0;
@@ -48,7 +50,7 @@ function startGame() {
     gameDuration = 30;
     scoreDisplay.textContent = `Score: ${score}`;
     timerDisplay.textContent = `Time Remaining: ${gameDuration}`;
-    
+
     // Start mole interval
     moleInterval = setInterval(showMole, 1000); // Mole shows every 1 second
 
@@ -64,6 +66,9 @@ function startGame() {
     
     // Hide the start button during the game
     startButton.style.display = 'none';
+
+    // Start background music
+    backgroundMusic.play();
 }
 
 // Function to end the game
@@ -84,6 +89,9 @@ function endGame() {
 
     // Show the start button again after the game ends
     startButton.style.display = 'block';
+
+    // Pause background music when the game ends
+    backgroundMusic.pause();
 }
 
 // Function to handle clicking the mole
@@ -96,3 +104,10 @@ mole.addEventListener('click', () => {
 
 // Start the game when the Start Game button is clicked
 startButton.addEventListener('click', startGame);
+
+// Reset the high score when the Reset button is clicked
+resetHighScoreButton.addEventListener('click', () => {
+    localStorage.removeItem('highScore'); // Remove high score from localStorage
+    highScore = 0; // Reset to 0
+    highScoreDisplay.textContent = highScore; // Update display
+});
