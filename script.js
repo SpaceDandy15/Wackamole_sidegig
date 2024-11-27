@@ -1,11 +1,16 @@
-// Select the mole element, score element, and timer element from the DOM
+// Select the mole element, score element, timer element, and high score display
 const mole = document.getElementById('mole');
 const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
+const highScoreDisplay = document.getElementById('highScore');
 
-// Initialize score and game duration
-let score = 0;  // Initial score is 0
+// Initialize score, high score, and game duration
+let score = 0; // Initial score is 0
 let gameDuration = 30; // Set initial game duration to 30 seconds
+let highScore = localStorage.getItem('highScore') || 0; // Retrieve high score from localStorage or initialize to 0
+
+// Update the high score display with the saved value
+highScoreDisplay.textContent = highScore;
 
 // Function to randomly position the mole on the game board
 function randomPosition() {
@@ -32,7 +37,7 @@ function hideMole() {
     mole.classList.remove('show');  // Remove the 'show' class to hide the mole
 }
 
-// Function to handle clicking the mole (Wack!)
+// Function to handle clicking the mole (Whack!)
 mole.addEventListener('click', () => {
     score += 1;  // Increase score by 1 when the mole is clicked
     scoreDisplay.textContent = `Score: ${score}`;  // Update the score display
@@ -52,5 +57,12 @@ let gameTimer = setInterval(function() {
     if (gameDuration <= 0) {
         clearInterval(gameTimer);  // Stop the timer
         alert('Game Over! Final Score: ' + score);  // Show game over alert with final score
+
+        // Update high score if the current score is higher
+        if (score > highScore) {
+            highScore = score;  // Update high score
+            localStorage.setItem('highScore', highScore);  // Save high score in localStorage
+            highScoreDisplay.textContent = highScore;  // Update high score display
+        }
     }
 }, 1000);  // Decrease the time every second
